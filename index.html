@@ -1,0 +1,3271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>HAIRÉ — Hair Care Discovery</title>
+
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965567.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #f8f5ef;
+      color: #302a27;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    :root {
+      --cream: #f8f5ef;
+      --cream-2: #eee7dc;
+      --brown: #332b27;
+      --brown-light: #625650;
+      --rose: #c99c91;
+      --rose-light: #ead4ce;
+      --green: #65705c;
+      --white: #ffffff;
+      --border: rgba(48, 42, 39, 0.12);
+      --shadow: 0 20px 60px rgba(55, 42, 34, 0.10);
+      --radius: 24px;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-label {
+      color: var(--rose);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+    }
+
+    .section-description {
+      color: var(--brown-light);
+      max-width: 580px;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .serif {
+      font-family: "Playfair Display", serif;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: .3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(248, 245, 239, .94);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.05);
+    }
+
+    .nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--rose);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--brown);
+      transition: .3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      transition: .3s;
+    }
+
+    .icon-btn:hover {
+      background: var(--brown);
+      color: white;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border-radius: 100px;
+      background: var(--brown);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .3s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(48,42,39,.18);
+    }
+
+    .outline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border: 1px solid rgba(48,42,39,.25);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .3s;
+    }
+
+    .outline-btn:hover {
+      background: var(--brown);
+      color: white;
+    }
+
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--brown);
+      color: white;
+      font-size: 20px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 120px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: #ead9cf;
+      border-radius: 50%;
+      top: -200px;
+      right: -150px;
+      filter: blur(3px);
+      opacity: .6;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 610px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .hero-kicker i {
+      width: 7px;
+      height: 7px;
+      background: var(--rose);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 7vw, 92px);
+      line-height: .94;
+      letter-spacing: -4px;
+      font-weight: 600;
+    }
+
+    .hero h1 em {
+      color: var(--rose);
+      font-style: italic;
+    }
+
+    .hero-text {
+      max-width: 510px;
+      margin: 27px 0 32px;
+      color: var(--brown-light);
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 620px;
+    }
+
+    .hero-main-image {
+      height: 100%;
+      border-radius: 180px 180px 24px 24px;
+      object-position: center;
+      box-shadow: var(--shadow);
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,.8);
+      box-shadow: 0 20px 50px rgba(50,35,30,.15);
+      border-radius: 18px;
+      padding: 16px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-card.one {
+      left: -45px;
+      bottom: 70px;
+      width: 175px;
+    }
+
+    .floating-card.two {
+      right: -35px;
+      top: 100px;
+      width: 180px;
+      animation-delay: 1s;
+    }
+
+    .floating-card img {
+      height: 95px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .floating-card strong {
+      font-size: 13px;
+      display: block;
+    }
+
+    .floating-card small {
+      color: #85756e;
+      font-size: 11px;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-13px); }
+    }
+
+    /* =========================================================
+       MARQUEE
+    ========================================================= */
+
+    .marquee {
+      padding: 20px 0;
+      background: var(--brown);
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 50px;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee span {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    .marquee b {
+      color: var(--rose);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* =========================================================
+       HAIR TYPES
+    ========================================================= */
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .hair-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .hair-card {
+      position: relative;
+      height: 390px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hair-card img {
+      height: 100%;
+      transition: .7s ease;
+    }
+
+    .hair-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .hair-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 35%, rgba(20,15,12,.8));
+    }
+
+    .hair-info {
+      position: absolute;
+      z-index: 2;
+      bottom: 25px;
+      left: 24px;
+      color: white;
+    }
+
+    .hair-info span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: .75;
+    }
+
+    .hair-info h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 29px;
+      margin-top: 5px;
+    }
+
+    /* =========================================================
+       CONCERNS
+    ========================================================= */
+
+    .concerns {
+      background: #eee7dc;
+    }
+
+    .concern-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 14px;
+    }
+
+    .concern-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 30px;
+      min-height: 210px;
+      border: 1px solid rgba(48,42,39,.07);
+      transition: .35s;
+    }
+
+    .concern-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .concern-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--rose-light);
+      border-radius: 50%;
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+
+    .concern-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+    }
+
+    .concern-card p {
+      color: var(--brown-light);
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    /* =========================================================
+       INGREDIENTS
+    ========================================================= */
+
+    .ingredient-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+    .ingredient-card {
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: white;
+      transition: .3s;
+    }
+
+    .ingredient-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .ingredient-image {
+      height: 190px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .ingredient-image img {
+      height: 100%;
+    }
+
+    .ingredient-body {
+      padding: 17px 10px 10px;
+    }
+
+    .ingredient-body h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .ingredient-body p {
+      color: var(--brown-light);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* =========================================================
+       PRODUCTS
+    ========================================================= */
+
+    .product-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+      padding: 10px 17px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--brown);
+      color: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 16px;
+    }
+
+    .product-card {
+      position: relative;
+      background: white;
+      padding: 10px;
+      border-radius: 24px;
+      transition: .35s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      height: 280px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      background: #eee;
+    }
+
+    .product-image img {
+      height: 100%;
+    }
+
+    .heart {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      z-index: 2;
+    }
+
+    .product-body {
+      padding: 17px 8px 10px;
+    }
+
+    .product-brand {
+      font-size: 10px;
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .product-body h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      margin-top: 4px;
+    }
+
+    .rating {
+      color: #a78255;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .product-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .product-tags span {
+      background: #f1ede6;
+      border-radius: 50px;
+      padding: 4px 8px;
+      font-size: 9px;
+    }
+
+    /* =========================================================
+       ROUTINE
+    ========================================================= */
+
+    .routine {
+      background: var(--brown);
+      color: white;
+    }
+
+    .routine .section-label {
+      color: var(--rose-light);
+    }
+
+    .routine .section-description {
+      color: #cfc4bd;
+    }
+
+    .routine-wrap {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .routine-image {
+      height: 620px;
+      border-radius: 180px 180px 25px 25px;
+      overflow: hidden;
+    }
+
+    .routine-image img {
+      height: 100%;
+    }
+
+    .routine-steps {
+      margin-top: 40px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 55px 1fr;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Playfair Display", serif;
+    }
+
+    .step h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: #bdb1aa;
+      margin-top: 4px;
+    }
+
+    /* =========================================================
+       ROUTINES CARDS
+    ========================================================= */
+
+    .routine-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .routine-card {
+      min-height: 390px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    .routine-card img {
+      height: 100%;
+      transition: .6s;
+    }
+
+    .routine-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .routine-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 25%, rgba(22,17,14,.85));
+    }
+
+    .routine-card-content {
+      position: absolute;
+      z-index: 2;
+      bottom: 25px;
+      left: 25px;
+      right: 25px;
+    }
+
+    .routine-card-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 29px;
+      line-height: 1.05;
+    }
+
+    .routine-card-content p {
+      font-size: 12px;
+      margin: 8px 0 15px;
+      opacity: .8;
+    }
+
+    .routine-card-content a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       EDITORIAL
+    ========================================================= */
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+
+    .article-main,
+    .article-small {
+      position: relative;
+      overflow: hidden;
+      border-radius: 25px;
+      color: white;
+    }
+
+    .article-main {
+      height: 600px;
+    }
+
+    .article-small {
+      height: 291px;
+    }
+
+    .article-main img,
+    .article-small img {
+      height: 100%;
+      transition: .6s;
+    }
+
+    .article-main:hover img,
+    .article-small:hover img {
+      transform: scale(1.05);
+    }
+
+    .article-main::after,
+    .article-small::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 30%, rgba(25,18,15,.85));
+    }
+
+    .article-content {
+      position: absolute;
+      z-index: 2;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+    }
+
+    .article-content span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--rose-light);
+    }
+
+    .article-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 31px;
+      line-height: 1.1;
+      margin-top: 7px;
+    }
+
+    .article-small .article-content h3 {
+      font-size: 23px;
+    }
+
+    .article-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    /* =========================================================
+       REVIEWS
+    ========================================================= */
+
+    .reviews {
+      background: #eee7dc;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .review-card {
+      background: var(--cream);
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    .review-stars {
+      color: #a78255;
+      letter-spacing: 3px;
+    }
+
+    .review-card blockquote {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+      line-height: 1.3;
+      margin: 25px 0;
+    }
+
+    .review-user {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .review-user strong {
+      font-size: 12px;
+      display: block;
+    }
+
+    .review-user span {
+      font-size: 10px;
+      color: var(--brown-light);
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .discovery-cta {
+      padding: 120px 0;
+    }
+
+    .cta-box {
+      position: relative;
+      min-height: 520px;
+      border-radius: 35px;
+      overflow: hidden;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 70px;
+    }
+
+    .cta-box img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .cta-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(35,25,21,.88), rgba(35,25,21,.25));
+      z-index: 1;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+    }
+
+    .cta-content .section-title {
+      font-size: clamp(45px, 6vw, 75px);
+    }
+
+    .cta-content p {
+      color: #e7ddd8;
+      margin: 22px 0 30px;
+      max-width: 480px;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      background: #2d2622;
+      color: white;
+      padding: 75px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3,1fr);
+      gap: 50px;
+    }
+
+    .footer-brand p {
+      color: #a99d96;
+      max-width: 300px;
+      font-size: 13px;
+      margin: 18px 0 25px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .socials a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      transition: .3s;
+    }
+
+    .socials a:hover {
+      background: white;
+      color: var(--brown);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #a99d96;
+      font-size: 13px;
+      margin: 10px 0;
+      transition: .2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-top: 55px;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      color: #857871;
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       SEARCH MODAL
+    ========================================================= */
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(35,27,23,.8);
+      backdrop-filter: blur(10px);
+      z-index: 3000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+
+    .search-overlay.active {
+      display: flex;
+    }
+
+    .search-box {
+      width: min(700px, calc(100% - 30px));
+      background: var(--cream);
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    .search-box-top {
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: white;
+      padding: 17px 20px;
+      border-radius: 100px;
+    }
+
+    .close-search {
+      width: 50px;
+      border-radius: 50%;
+      background: var(--brown);
+      color: white;
+    }
+
+    .search-results {
+      margin-top: 20px;
+      max-height: 300px;
+      overflow: auto;
+    }
+
+    .search-result {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* =========================================================
+       PRODUCT MODAL
+    ========================================================= */
+
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(35,27,23,.8);
+      backdrop-filter: blur(8px);
+      z-index: 2500;
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .product-modal.active {
+      display: grid;
+    }
+
+    .modal-inner {
+      background: var(--cream);
+      border-radius: 30px;
+      width: min(800px,100%);
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-image {
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .modal-image img {
+      height: 100%;
+    }
+
+    .modal-info {
+      padding: 45px 30px;
+    }
+
+    .modal-info h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 40px;
+      line-height: 1.05;
+      margin: 8px 0 15px;
+    }
+
+    .modal-info p {
+      color: var(--brown-light);
+      font-size: 14px;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    /* =========================================================
+       BACK TO TOP
+    ========================================================= */
+
+    #backTop {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--brown);
+      color: white;
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(15px);
+      transition: .3s;
+    }
+
+    #backTop.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       REVEAL ANIMATION
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE — TABLET
+    ========================================================= */
+
+    @media (max-width: 1024px) {
+
+      .container {
+        width: min(94%, 900px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-actions .primary-btn {
+        display: none;
+      }
+
+      .hero-grid {
+        gap: 35px;
+      }
+
+      .hero-visual {
+        height: 520px;
+      }
+
+      .hair-grid,
+      .concern-grid,
+      .ingredient-grid,
+      .product-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .routine-wrap {
+        gap: 40px;
+      }
+
+      .routine-cards {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .routine-cards .routine-card:last-child {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE — MOBILE
+    ========================================================= */
+
+    @media (max-width: 767px) {
+
+      .container {
+        width: calc(100% - 30px);
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .nav {
+        height: 70px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      .nav-actions {
+        gap: 6px;
+      }
+
+      .nav-actions .icon-btn:first-child {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+        letter-spacing: -3px;
+      }
+
+      .hero-text {
+        font-size: 15px;
+      }
+
+      .hero-visual {
+        height: 470px;
+      }
+
+      .hero-main-image {
+        border-radius: 100px 100px 20px 20px;
+      }
+
+      .floating-card.one {
+        left: 5px;
+        bottom: 35px;
+      }
+
+      .floating-card.two {
+        right: 5px;
+        top: 30px;
+      }
+
+      .section-heading {
+        display: block;
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        font-size: 43px;
+      }
+
+      .hair-grid,
+      .concern-grid,
+      .ingredient-grid,
+      .product-grid,
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hair-card {
+        height: 400px;
+      }
+
+      .concern-card {
+        min-height: auto;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .product-image {
+        height: 220px;
+      }
+
+      .product-body h3 {
+        font-size: 17px;
+      }
+
+      .routine-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .routine-image {
+        height: 450px;
+      }
+
+      .routine-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .routine-cards .routine-card:last-child {
+        display: block;
+      }
+
+      .editorial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .article-main {
+        height: 450px;
+      }
+
+      .article-side {
+        grid-template-columns: 1fr;
+      }
+
+      .article-small {
+        height: 300px;
+      }
+
+      .cta-box {
+        min-height: 500px;
+        padding: 35px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1/-1;
+      }
+
+      .footer-bottom {
+        display: block;
+      }
+
+      .footer-bottom span {
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      .modal-inner {
+        grid-template-columns: 1fr;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .modal-image {
+        height: 280px;
+      }
+
+      .modal-info {
+        padding: 25px 20px;
+      }
+
+      .modal-info h2 {
+        font-size: 32px;
+      }
+    }
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 400px) {
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .floating-card {
+        padding: 10px;
+      }
+
+      .floating-card.one {
+        width: 145px;
+      }
+
+      .floating-card.two {
+        width: 145px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 280px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header id="header">
+
+  <div class="container nav">
+
+    <a href="#home" class="logo">
+      HAIR<span>É</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#explore">Explore</a>
+      <a href="#concerns">Concerns</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#products">Products</a>
+      <a href="#routines">Routines</a>
+      <a href="#journal">Journal</a>
+    </nav>
+
+    <div class="nav-actions">
+
+      <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+        ⌕
+      </button>
+
+      <a href="#discover" class="primary-btn">
+        Start Exploring
+      </a>
+
+      <button class="hamburger" onclick="toggleMobileMenu()">
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div id="mobileMenu"
+     style="
+     position:fixed;
+     top:70px;
+     left:15px;
+     right:15px;
+     background:#f8f5ef;
+     border-radius:20px;
+     padding:20px;
+     z-index:999;
+     display:none;
+     box-shadow:0 20px 50px rgba(0,0,0,.15);">
+
+  <a href="#explore" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Explore</a>
+  <a href="#concerns" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Concerns</a>
+  <a href="#ingredients" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Ingredients</a>
+  <a href="#products" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Products</a>
+  <a href="#routines" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Routines</a>
+  <a href="#journal" onclick="closeMobileMenu()" style="display:block;padding:12px 5px;">Journal</a>
+
+</div>
+
+
+<!-- =========================================================
+     01 — HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+  <div class="container hero-grid">
+
+    <div class="hero-content reveal">
+
+      <div class="hero-kicker">
+        <i></i>
+        Hair care discovery platform
+      </div>
+
+      <h1>
+        Discover<br>
+        Your <em>Best</em><br>
+        Hair.
+      </h1>
+
+      <p class="hero-text">
+        Explore ingredients, products, routines and expert insights
+        designed to help you understand what your hair truly needs.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#explore" class="primary-btn">
+          Explore Hair Care →
+        </a>
+
+        <a href="#ingredients" class="outline-btn">
+          Discover Ingredients
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-visual reveal">
+
+      <img
+        class="hero-main-image"
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=85"
+        alt="Hair care beauty">
+
+      <div class="floating-card one">
+
+        <img
+          src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=400&q=80"
+          alt="Hair serum">
+
+        <strong>Repair Serum</strong>
+        <small>For dry & damaged hair</small>
+
+      </div>
+
+      <div class="floating-card two">
+
+        <img
+          src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80"
+          alt="Hair product">
+
+        <strong>Scalp Care</strong>
+        <small>Clean • Balance • Restore</small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MARQUEE
+========================================================= -->
+
+<div class="marquee">
+
+  <div class="marquee-track">
+
+    <span>Healthy Hair Starts With <b>Understanding</b></span>
+    <span>✦</span>
+    <span>Explore <b>Ingredients</b></span>
+    <span>✦</span>
+    <span>Build Your <b>Routine</b></span>
+    <span>✦</span>
+    <span>Healthy Hair Starts With <b>Understanding</b></span>
+    <span>✦</span>
+    <span>Explore <b>Ingredients</b></span>
+    <span>✦</span>
+    <span>Build Your <b>Routine</b></span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     02 — HAIR TYPES
+========================================================= -->
+
+<section class="section" id="explore">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+        <div class="section-label">Explore by hair type</div>
+
+        <h2 class="section-title">
+          Your hair has<br>
+          its own language.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Start your discovery journey by understanding your
+        natural hair pattern and its unique needs.
+      </p>
+
+    </div>
+
+
+    <div class="hair-grid">
+
+      <div class="hair-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=700&q=85"
+          alt="Straight hair">
+
+        <div class="hair-info">
+          <span>01 / Type</span>
+          <h3>Straight</h3>
+        </div>
+
+      </div>
+
+
+      <div class="hair-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=700&q=85"
+          alt="Wavy hair">
+
+        <div class="hair-info">
+          <span>02 / Type</span>
+          <h3>Wavy</h3>
+        </div>
+
+      </div>
+
+
+      <div class="hair-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=700&q=85"
+          alt="Curly hair">
+
+        <div class="hair-info">
+          <span>03 / Type</span>
+          <h3>Curly</h3>
+        </div>
+
+      </div>
+
+
+      <div class="hair-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1595959183082-7bcead730f8f?auto=format&fit=crop&w=700&q=85"
+          alt="Coily hair">
+
+        <div class="hair-info">
+          <span>04 / Type</span>
+          <h3>Coily</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     03 — HAIR CONCERNS
+========================================================= -->
+
+<section class="section concerns" id="concerns">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+        <div class="section-label">Understand your needs</div>
+
+        <h2 class="section-title">
+          What is your<br>
+          hair asking for?
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Find targeted information and discover care options
+        based on the concerns you experience most.
+      </p>
+
+    </div>
+
+
+    <div class="concern-grid">
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">✦</div>
+        <h3>Hair Fall</h3>
+        <p>Discover ingredients and routines that support healthier-looking hair.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">≈</div>
+        <h3>Frizz</h3>
+        <p>Explore smoothing ingredients and techniques for more manageable hair.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">◌</div>
+        <h3>Dryness</h3>
+        <p>Learn how hydration and nourishing oils can improve hair feel.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">⌁</div>
+        <h3>Dandruff</h3>
+        <p>Understand scalp-focused ingredients and cleansing routines.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">◇</div>
+        <h3>Split Ends</h3>
+        <p>Discover protective care and habits for fragile-looking ends.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">✧</div>
+        <h3>Damage</h3>
+        <p>Explore restorative routines for chemically or heat-treated hair.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">○</div>
+        <h3>Scalp Care</h3>
+        <p>Build a balanced scalp-first approach to your hair routine.</p>
+      </div>
+
+      <div class="concern-card reveal">
+        <div class="concern-icon">♡</div>
+        <h3>Color Care</h3>
+        <p>Discover ways to maintain vibrant, healthy-looking colored hair.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     04 — INGREDIENTS
+========================================================= -->
+
+<section class="section" id="ingredients">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+        <div class="section-label">Ingredient library</div>
+
+        <h2 class="section-title">
+          Know what goes<br>
+          into your hair care.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        A simple way to explore popular ingredients and
+        understand why they appear in modern hair care.
+      </p>
+
+    </div>
+
+
+    <div class="ingredient-grid">
+
+      <div class="ingredient-card reveal">
+
+        <div class="ingredient-image">
+          <img
+            src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=600&q=80"
+            alt="Argan oil">
+        </div>
+
+        <div class="ingredient-body">
+          <h3>Argan Oil</h3>
+          <p>Nourishing • Smoothing • Shine</p>
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-card reveal">
+
+        <div class="ingredient-image">
+          <img
+            src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80"
+            alt="Rosemary">
+        </div>
+
+        <div class="ingredient-body">
+          <h3>Rosemary</h3>
+          <p>Scalp care • Botanical</p>
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-card reveal">
+
+        <div class="ingredient-image">
+          <img
+            src="https://images.unsplash.com/photo-1611073768084-7d3c6cddf0b4?auto=format&fit=crop&w=600&q=80"
+            alt="Hyaluronic acid">
+        </div>
+
+        <div class="ingredient-body">
+          <h3>Hyaluronic Acid</h3>
+          <p>Hydration • Moisture support</p>
+        </div>
+
+      </div>
+
+
+      <div class="ingredient-card reveal">
+
+        <div class="ingredient-image">
+          <img
+            src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80"
+            alt="Keratin">
+        </div>
+
+        <div class="ingredient-body">
+          <h3>Keratin</h3>
+          <p>Strength • Smoothness • Repair</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     05 — PRODUCTS
+========================================================= -->
+
+<section class="section concerns" id="products">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+        <div class="section-label">Product discovery</div>
+
+        <h2 class="section-title">
+          Products worth<br>
+          exploring.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Browse by category and discover products that may fit
+        your hair type, routine and concerns.
+      </p>
+
+    </div>
+
+
+    <div class="product-tabs">
+
+      <button class="filter-btn active" data-filter="all">
+        All
+      </button>
+
+      <button class="filter-btn" data-filter="shampoo">
+        Shampoo
+      </button>
+
+      <button class="filter-btn" data-filter="conditioner">
+        Conditioner
+      </button>
+
+      <button class="filter-btn" data-filter="serum">
+        Serum
+      </button>
+
+      <button class="filter-btn" data-filter="oil">
+        Oils
+      </button>
+
+    </div>
+
+
+    <div class="product-grid" id="productGrid">
+
+
+      <div class="product-card reveal" data-category="shampoo">
+
+        <div class="product-image">
+
+          <button class="heart" onclick="toggleHeart(this)">
+            ♡
+          </button>
+
+          <img
+            src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=85"
+            alt="Gentle shampoo">
+
+        </div>
+
+        <div class="product-body">
+
+          <span class="product-brand">Aurelia</span>
+
+          <h3>Gentle Cleanse</h3>
+
+          <div class="rating">★★★★★ 4.8</div>
+
+          <div class="product-tags">
+            <span>Dry Hair</span>
+            <span>Gentle</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card reveal" data-category="conditioner">
+
+        <div class="product-image">
+
+          <button class="heart" onclick="toggleHeart(this)">
+            ♡
+          </button>
+
+          <img
+            src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=85"
+            alt="Conditioner">
+
+        </div>
+
+        <div class="product-body">
+
+          <span class="product-brand">Lumé</span>
+
+          <h3>Silk Conditioner</h3>
+
+          <div class="rating">★★★★★ 4.7</div>
+
+          <div class="product-tags">
+            <span>Frizz</span>
+            <span>Smoothing</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card reveal" data-category="serum">
+
+        <div class="product-image">
+
+          <button class="heart" onclick="toggleHeart(this)">
+            ♡
+          </button>
+
+          <img
+            src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=700&q=85"
+            alt="Hair serum">
+
+        </div>
+
+        <div class="product-body">
+
+          <span class="product-brand">NOVA</span>
+
+          <h3>Repair Serum</h3>
+
+          <div class="rating">★★★★★ 4.9</div>
+
+          <div class="product-tags">
+            <span>Damage</span>
+            <span>Shine</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card reveal" data-category="oil">
+
+        <div class="product-image">
+
+          <button class="heart" onclick="toggleHeart(this)">
+            ♡
+          </button>
+
+          <img
+            src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=85"
+            alt="Hair oil">
+
+        </div>
+
+        <div class="product-body">
+
+          <span class="product-brand">Botanica</span>
+
+          <h3>Rosemary Oil</h3>
+
+          <div class="rating">★★★★★ 4.6</div>
+
+          <div class="product-tags">
+            <span>Scalp</span>
+            <span>Botanical</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     06 — BUILD ROUTINE
+========================================================= -->
+
+<section class="section routine" id="routine">
+
+  <div class="container routine-wrap">
+
+    <div class="routine-image reveal">
+
+      <img
+        src="https://images.unsplash.com/photo-1527799820374-dcf8c9d4f9c5?auto=format&fit=crop&w=900&q=85"
+        alt="Hair care routine">
+
+    </div>
+
+
+    <div class="reveal">
+
+      <div class="section-label">Build your routine</div>
+
+      <h2 class="section-title">
+        Simple steps.<br>
+        Better habits.
+      </h2>
+
+      <p class="section-description">
+        Great hair care doesn't need to be complicated.
+        Start with the fundamentals and build from there.
+      </p>
+
+
+      <div class="routine-steps">
+
+        <div class="step">
+
+          <div class="step-number">01</div>
+
+          <div>
+            <h3>Cleanse</h3>
+            <p>Remove buildup while keeping your scalp comfortable.</p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">02</div>
+
+          <div>
+            <h3>Condition</h3>
+            <p>Restore softness and improve manageability.</p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">03</div>
+
+          <div>
+            <h3>Treat</h3>
+            <p>Target specific concerns with masks and treatments.</p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">04</div>
+
+          <div>
+            <h3>Protect</h3>
+            <p>Protect your hair from heat, dryness and environmental stress.</p>
+          </div>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">05</div>
+
+          <div>
+            <h3>Style</h3>
+            <p>Finish with products that support your desired look.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     07 — FEATURED ROUTINES
+========================================================= -->
+
+<section class="section" id="routines">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+
+        <div class="section-label">
+          Curated routines
+        </div>
+
+        <h2 class="section-title">
+          Find a routine<br>
+          that fits you.
+        </h2>
+
+      </div>
+
+      <a href="#discover" class="outline-btn">
+        Explore All
+      </a>
+
+    </div>
+
+
+    <div class="routine-cards">
+
+      <div class="routine-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=85"
+          alt="Anti frizz routine">
+
+        <div class="routine-card-content">
+
+          <h3>Anti-Frizz Ritual</h3>
+
+          <p>
+            For smoother, softer and more manageable-looking hair.
+          </p>
+
+          <a href="#discover">
+            Explore Routine →
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="routine-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=85"
+          alt="Curly hair routine">
+
+        <div class="routine-card-content">
+
+          <h3>Curly Hair Ritual</h3>
+
+          <p>
+            Hydration-focused care for defined, healthy-looking curls.
+          </p>
+
+          <a href="#discover">
+            Explore Routine →
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="routine-card reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85"
+          alt="Hair repair routine">
+
+        <div class="routine-card-content">
+
+          <h3>Repair Ritual</h3>
+
+          <p>
+            A restorative approach for dry and damaged hair.
+          </p>
+
+          <a href="#discover">
+            Explore Routine →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     08 — EDITORIAL
+========================================================= -->
+
+<section class="section concerns" id="journal">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+
+        <div class="section-label">
+          The hair journal
+        </div>
+
+        <h2 class="section-title">
+          Learn. Discover.<br>
+          Experiment.
+        </h2>
+
+      </div>
+
+      <p class="section-description">
+        Practical guides, ingredient education and beauty
+        inspiration to help you make more informed choices.
+      </p>
+
+    </div>
+
+
+    <div class="editorial-grid">
+
+      <article class="article-main reveal">
+
+        <img
+          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85"
+          alt="Hair care guide">
+
+        <div class="article-content">
+
+          <span>Hair Guide · 8 min read</span>
+
+          <h3>
+            The Complete Guide to Understanding
+            Your Hair Type
+          </h3>
+
+        </div>
+
+      </article>
+
+
+      <div class="article-side">
+
+        <article class="article-small reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=85"
+            alt="Ingredients">
+
+          <div class="article-content">
+
+            <span>Ingredients</span>
+
+            <h3>
+              7 Ingredients Your Hair Will Love
+            </h3>
+
+          </div>
+
+        </article>
+
+
+        <article class="article-small reveal">
+
+          <img
+            src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=85"
+            alt="Hair routine">
+
+          <div class="article-content">
+
+            <span>Routine</span>
+
+            <h3>
+              How to Build a Minimal Hair Routine
+            </h3>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     09 — REVIEWS
+========================================================= -->
+
+<section class="section reviews">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+
+      <div>
+
+        <div class="section-label">
+          Community experiences
+        </div>
+
+        <h2 class="section-title">
+          Real routines.<br>
+          Real discoveries.
+        </h2>
+
+      </div>
+
+      <p class="section-description">
+        See how other beauty lovers approach their hair care
+        journeys and discover ideas for your own routine.
+      </p>
+
+    </div>
+
+
+    <div class="review-grid">
+
+      <div class="review-card reveal">
+
+        <div class="review-stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “I finally understood why my hair kept feeling
+          dry. The ingredient guide completely changed my routine.”
+        </blockquote>
+
+        <div class="review-user">
+
+          <div class="review-avatar">
+
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+              alt="User">
+
+          </div>
+
+          <div>
+            <strong>Maya R.</strong>
+            <span>Wavy Hair · Dryness</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="review-card reveal">
+
+        <div class="review-stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “The routine builder made hair care feel simple
+          instead of overwhelming. I know what each step is for.”
+        </blockquote>
+
+        <div class="review-user">
+
+          <div class="review-avatar">
+
+            <img
+              src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80"
+              alt="User">
+
+          </div>
+
+          <div>
+            <strong>Amelia K.</strong>
+            <span>Curly Hair · Frizz</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="review-card reveal">
+
+        <div class="review-stars">
+          ★★★★★
+        </div>
+
+        <blockquote>
+          “It feels more like a beauty magazine than a
+          product catalogue. I love exploring new ingredients.”
+        </blockquote>
+
+        <div class="review-user">
+
+          <div class="review-avatar">
+
+            <img
+              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=100&q=80"
+              alt="User">
+
+          </div>
+
+          <div>
+            <strong>Sofia M.</strong>
+            <span>Straight Hair · Damage</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     10 — DISCOVERY CTA
+========================================================= -->
+
+<section class="discovery-cta" id="discover">
+
+  <div class="container">
+
+    <div class="cta-box reveal">
+
+      <img
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=85"
+        alt="Hair discovery">
+
+      <div class="cta-content">
+
+        <div class="section-label">
+          Your discovery starts here
+        </div>
+
+        <h2 class="section-title">
+          Your hair.<br>
+          Your routine.<br>
+          Your discovery.
+        </h2>
+
+        <p>
+          Explore hair types, concerns, ingredients and
+          routines to create a care journey that feels
+          uniquely yours.
+        </p>
+
+        <button class="primary-btn" onclick="openDiscovery()">
+          Begin Your Discovery →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     11 — DISCOVERY MODAL
+========================================================= -->
+
+<div class="product-modal" id="discoveryModal">
+
+  <div class="modal-inner">
+
+    <button class="modal-close" onclick="closeDiscovery()">
+      ×
+    </button>
+
+    <div class="modal-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=85"
+        alt="Hair discovery">
+
+    </div>
+
+    <div class="modal-info">
+
+      <div class="section-label">
+        Discovery demo
+      </div>
+
+      <h2>
+        Let's understand your hair.
+      </h2>
+
+      <p>
+        This is a static front-end demo. Choose the option
+        that feels closest to you and explore the suggested
+        starting point.
+      </p>
+
+      <div style="margin-top:25px;display:grid;gap:9px;">
+
+        <button class="outline-btn" onclick="discoveryAnswer('Straight Hair')">
+          My hair is Straight
+        </button>
+
+        <button class="outline-btn" onclick="discoveryAnswer('Wavy Hair')">
+          My hair is Wavy
+        </button>
+
+        <button class="outline-btn" onclick="discoveryAnswer('Curly Hair')">
+          My hair is Curly
+        </button>
+
+        <button class="outline-btn" onclick="discoveryAnswer('Coily Hair')">
+          My hair is Coily
+        </button>
+
+      </div>
+
+      <p id="discoveryResult"
+         style="margin-top:20px;font-weight:700;color:#332b27;">
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     12 — FOOTER
+========================================================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <a href="#home" class="logo">
+          HAIR<span>É</span>
+        </a>
+
+        <p>
+          A modern discovery platform for understanding
+          hair care, ingredients, products and routines.
+        </p>
+
+        <div class="socials">
+
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Pinterest">P</a>
+          <a href="#" aria-label="TikTok">TK</a>
+          <a href="#" aria-label="YouTube">YT</a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Explore</h4>
+
+        <a href="#explore">Hair Types</a>
+        <a href="#concerns">Hair Concerns</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#products">Products</a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Discover</h4>
+
+        <a href="#routine">Build Routine</a>
+        <a href="#routines">Featured Routines</a>
+        <a href="#journal">Hair Journal</a>
+        <a href="#discover">Discovery Tool</a>
+
+      </div>
+
+
+      <div class="footer-col">
+
+        <h4>Company</h4>
+
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 HAIRÉ. All rights reserved.
+      </span>
+
+      <span>
+        Made for better hair discoveries.
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div class="search-overlay" id="searchOverlay">
+
+  <div class="search-box">
+
+    <div class="search-box-top">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search hair types, ingredients, products..."
+        oninput="performSearch()">
+
+      <button class="close-search" onclick="closeSearch()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="search-results" id="searchResults">
+
+      <div class="search-result">
+        Start typing to discover hair care topics.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  ↑
+</button>
+
+
+<script>
+
+  /* =========================================================
+     HEADER SCROLL
+  ========================================================= */
+
+  const header = document.getElementById("header");
+  const backTop = document.getElementById("backTop");
+
+  window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+
+    if (window.scrollY > 500) {
+      backTop.classList.add("visible");
+    } else {
+      backTop.classList.remove("visible");
+    }
+
+  });
+
+
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+  function toggleMobileMenu() {
+
+    const menu = document.getElementById("mobileMenu");
+
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+    } else {
+      menu.style.display = "block";
+    }
+
+  }
+
+  function closeMobileMenu() {
+    document.getElementById("mobileMenu").style.display = "none";
+  }
+
+
+  /* =========================================================
+     SEARCH
+  ========================================================= */
+
+  const searchOverlay = document.getElementById("searchOverlay");
+
+  const searchData = [
+
+    {
+      title: "Straight Hair",
+      type: "Hair Type",
+      link: "#explore"
+    },
+
+    {
+      title: "Wavy Hair",
+      type: "Hair Type",
+      link: "#explore"
+    },
+
+    {
+      title: "Curly Hair",
+      type: "Hair Type",
+      link: "#explore"
+    },
+
+    {
+      title: "Coily Hair",
+      type: "Hair Type",
+      link: "#explore"
+    },
+
+    {
+      title: "Hair Fall",
+      type: "Hair Concern",
+      link: "#concerns"
+    },
+
+    {
+      title: "Frizz",
+      type: "Hair Concern",
+      link: "#concerns"
+    },
+
+    {
+      title: "Dryness",
+      type: "Hair Concern",
+      link: "#concerns"
+    },
+
+    {
+      title: "Argan Oil",
+      type: "Ingredient",
+      link: "#ingredients"
+    },
+
+    {
+      title: "Rosemary",
+      type: "Ingredient",
+      link: "#ingredients"
+    },
+
+    {
+      title: "Hyaluronic Acid",
+      type: "Ingredient",
+      link: "#ingredients"
+    },
+
+    {
+      title: "Keratin",
+      type: "Ingredient",
+      link: "#ingredients"
+    },
+
+    {
+      title: "Gentle Cleanse",
+      type: "Product",
+      link: "#products"
+    },
+
+    {
+      title: "Silk Conditioner",
+      type: "Product",
+      link: "#products"
+    },
+
+    {
+      title: "Repair Serum",
+      type: "Product",
+      link: "#products"
+    },
+
+    {
+      title: "Rosemary Oil",
+      type: "Product",
+      link: "#products"
+    }
+
+  ];
+
+
+  function openSearch() {
+
+    searchOverlay.classList.add("active");
+
+    setTimeout(() => {
+      document.getElementById("searchInput").focus();
+    }, 100);
+
+  }
+
+
+  function closeSearch() {
+
+    searchOverlay.classList.remove("active");
+
+    document.getElementById("searchInput").value = "";
+
+  }
+
+
+  function performSearch() {
+
+    const input =
+      document.getElementById("searchInput").value
+      .toLowerCase()
+      .trim();
+
+    const results =
+      document.getElementById("searchResults");
+
+    if (!input) {
+
+      results.innerHTML = `
+        <div class="search-result">
+          Start typing to discover hair care topics.
+        </div>
+      `;
+
+      return;
+    }
+
+    const matches = searchData.filter(item =>
+      item.title.toLowerCase().includes(input) ||
+      item.type.toLowerCase().includes(input)
+    );
+
+    if (!matches.length) {
+
+      results.innerHTML = `
+        <div class="search-result">
+          No results found. Try another search.
+        </div>
+      `;
+
+      return;
+    }
+
+    results.innerHTML = matches.map(item => `
+
+      <a
+        href="${item.link}"
+        onclick="closeSearch()"
+        class="search-result"
+        style="display:block;">
+
+        <strong>${item.title}</strong>
+
+        <small style="display:block;color:#8a7972;margin-top:3px;">
+          ${item.type}
+        </small>
+
+      </a>
+
+    `).join("");
+
+  }
+
+
+  /* =========================================================
+     PRODUCT FILTER
+  ========================================================= */
+
+  const filterButtons =
+    document.querySelectorAll(".filter-btn");
+
+  const productCards =
+    document.querySelectorAll(".product-card");
+
+  filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      filterButtons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      const filter =
+        button.dataset.filter;
+
+      productCards.forEach(card => {
+
+        const category =
+          card.dataset.category;
+
+        if (filter === "all" || category === filter) {
+
+          card.style.display = "block";
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+    });
+
+  });
+
+
+  /* =========================================================
+     FAVORITES
+  ========================================================= */
+
+  function toggleHeart(button) {
+
+    if (button.textContent.trim() === "♡") {
+
+      button.textContent = "♥";
+      button.style.color = "#b56f67";
+
+    } else {
+
+      button.textContent = "♡";
+      button.style.color = "";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     DISCOVERY MODAL
+  ========================================================= */
+
+  function openDiscovery() {
+
+    document
+      .getElementById("discoveryModal")
+      .classList.add("active");
+
+    document
+      .getElementById("discoveryResult")
+      .textContent = "";
+
+  }
+
+
+  function closeDiscovery() {
+
+    document
+      .getElementById("discoveryModal")
+      .classList.remove("active");
+
+  }
+
+
+  function discoveryAnswer(type) {
+
+    const result =
+      document.getElementById("discoveryResult");
+
+    result.innerHTML =
+      `Great starting point: <strong>${type}</strong>.<br>
+       Explore the Hair Types and Routines sections below to continue your discovery.`;
+
+  }
+
+
+  /* =========================================================
+     CLOSE MODALS WHEN CLICKING BACKGROUND
+  ========================================================= */
+
+  searchOverlay.addEventListener("click", event => {
+
+    if (event.target === searchOverlay) {
+      closeSearch();
+    }
+
+  });
+
+
+  document
+    .getElementById("discoveryModal")
+    .addEventListener("click", event => {
+
+      if (
+        event.target ===
+        document.getElementById("discoveryModal")
+      ) {
+        closeDiscovery();
+      }
+
+    });
+
+
+  /* =========================================================
+     ESC KEY
+  ========================================================= */
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+      closeSearch();
+      closeDiscovery();
+
+    }
+
+  });
+
+
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+  const revealObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            revealObserver.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+
+      {
+        threshold: .12
+      }
+
+    );
+
+
+  revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+  });
+
+
+  /* =========================================================
+     SMOOTH NAVIGATION
+  ========================================================= */
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function(event) {
+
+      const target =
+        document.querySelector(this.getAttribute("href"));
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
